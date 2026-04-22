@@ -1,6 +1,8 @@
 import type { ComponentType } from 'react'
 import * as ReactPaginateModule from 'react-paginate'
+
 import type { ReactPaginateProps } from 'react-paginate'
+
 import css from './Pagination.module.css'
 
 const resolveReactPaginateComponent = (moduleValue: unknown): ComponentType<ReactPaginateProps> => {

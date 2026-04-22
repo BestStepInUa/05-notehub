@@ -1,35 +1,23 @@
-// import Modal from '../Modal/Modal'
-// import PostList from '../PostList/PostList'
-// import SearchBox from '../SearchBox/SearchBox'
-// import Pagination from '../Pagination/Pagination'
-
 import { useEffect, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-// import { useDebouncedCallback } from 'use-debounce'
-
-import css from './App.module.css'
-import NoteList from '../NoteList'
-import { fetchNotes } from '@/services/noteService'
-import Pagination from '../Pagination'
-import Modal from '../Modal'
-import NoteForm from '../NoteForm'
-import type { Note } from '@/types/note'
-import SearchBox from '../SearchBox'
 import { useDebouncedCallback } from 'use-debounce'
 
-// import { useQuery } from '@tanstack/react-query'
-// import { useState } from 'react'
-// import { fetchPosts } from '../../services/postService'
-// import { useDebouncedCallback } from 'use-debounce'
-// import CreatePostForm from '../CreatePostForm/CreatePostForm'
-// import EditPostForm from '../EditPostForm/EditPostForm'
-// import { Post } from '../../types/post'
+import SearchBox from '../SearchBox'
+import Pagination from '../Pagination'
+import NoteList from '../NoteList'
+import Modal from '../Modal'
+import NoteForm from '../NoteForm'
+
+import { fetchNotes } from '@/services/noteService'
+
+import type { Note } from '@/types/note'
+
+import css from './App.module.css'
 
 export default function App() {
 	const [currentPage, setCurrentPage] = useState(1)
 	const [searchQuery, setSearchQuery] = useState('')
 	const [isModalOpen, setIsModalOpen] = useState(false)
-	// const [isCreatePost, setIsCreatePost] = useState(false)
 
 	const queryClient = useQueryClient()
 	const { data } = useQuery<{ notes: Note[]; totalPages: number }, Error>({
