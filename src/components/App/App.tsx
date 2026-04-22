@@ -24,11 +24,7 @@ export default function App() {
 		queryKey: ['notes', searchQuery, currentPage],
 		queryFn: () => fetchNotes(searchQuery, currentPage),
 		refetchOnMount: false,
-		placeholderData: (previousData, previousQuery) => {
-			const previousQueryValue = previousQuery?.queryKey[1]
-
-			return previousQueryValue === searchQuery ? previousData : undefined
-		},
+		placeholderData: (previousData) => previousData,
 	})
 
 	const notes = data?.notes || []
