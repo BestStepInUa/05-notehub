@@ -20,11 +20,11 @@ const ValidationCreateNoteFormSchema = Yup.object().shape({
 		.required('Tag is required'),
 })
 
-interface CreateNoteFormProps {
+interface NoteFormProps {
 	onClose: () => void
 }
 
-export default function NoteForm({ onClose }: CreateNoteFormProps) {
+export default function NoteForm({ onClose }: NoteFormProps) {
 	interface FormData {
 		title: string
 		content?: string
@@ -97,4 +97,3 @@ export default function NoteForm({ onClose }: CreateNoteFormProps) {
 		</Formik>
 	)
 }
-
