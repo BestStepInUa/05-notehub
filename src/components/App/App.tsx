@@ -23,7 +23,6 @@ export default function App() {
 	const { data } = useQuery<{ notes: Note[]; totalPages: number }, Error>({
 		queryKey: ['notes', searchQuery, currentPage],
 		queryFn: () => fetchNotes(searchQuery, currentPage),
-		staleTime: 1000 * 60 * 5, // 5 minutes
 		refetchOnMount: false,
 		placeholderData: (previousData, previousQuery) => {
 			const previousQueryValue = previousQuery?.queryKey[1]
