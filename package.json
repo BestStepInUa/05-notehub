@@ -13,11 +13,13 @@
     "@tanstack/react-query": "^5.99.2",
     "@tanstack/react-query-devtools": "^5.99.2",
     "axios": "^1.15.2",
+    "formik": "^2.4.9",
     "modern-normalize": "^3.0.1",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-paginate": "^8.3.0",
-    "use-debounce": "^10.1.1"
+    "use-debounce": "^10.1.1",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",

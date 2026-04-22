@@ -11,6 +11,8 @@ import css from './App.module.css'
 import NoteList from '../NoteList'
 import { fetchNotes } from '@/services/noteService'
 import Pagination from '../Pagination'
+import Modal from '../Modal'
+import NoteForm from '../NoteForm'
 
 // import { useQuery } from '@tanstack/react-query'
 // import { useState } from 'react'
@@ -23,7 +25,7 @@ import Pagination from '../Pagination'
 export default function App() {
 	const [currentPage, setCurrentPage] = useState(1)
 	const [searchQuery, setSearchQuery] = useState('')
-	// const [isModalOpen, setIsModalOpen] = useState(false)
+	const [isModalOpen, setIsModalOpen] = useState(false)
 	// const [isCreatePost, setIsCreatePost] = useState(false)
 
 	const { data } = useQuery({
@@ -56,8 +58,20 @@ export default function App() {
 						onPageChange={setCurrentPage}
 					/>
 				)}
-				<button className={css.button}>Create note +</button>
+				<button
+					className={css.button}
+					onClick={() => {
+						setIsModalOpen(true)
+					}}
+				>
+					Create note +
+				</button>
 			</header>
+			{isModalOpen && (
+				<Modal onClose={() => setIsModalOpen(false)}>
+					<NoteForm onClose={() => setIsModalOpen(false)} />
+				</Modal>
+			)}
 			{notes.length > 0 && <NoteList notes={notes} />}
 		</div>
 	)

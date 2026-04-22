@@ -34,6 +34,15 @@ export const fetchNotes = async (
 	return { notes, totalPages }
 }
 
+export const createNote = async (noteData: {
+	title: string
+	content: string
+	tag: Note['tag']
+}): Promise<Note> => {
+	const { data } = await api.post('/notes', noteData)
+
+	return data
+}
 export const deleteNote = async (id: string): Promise<Note> => {
 	const { data } = await api.delete(`/notes/${id}`)
 
