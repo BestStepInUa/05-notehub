@@ -8,7 +8,7 @@ interface NotesResponse {
 }
 
 const api = axios.create({
-	baseURL: import.meta.env.VITE_BASE_URL.replace(/\/$/, ''),
+	baseURL: (import.meta.env.VITE_BASE_URL || '').replace(/\/$/, ''),
 	headers: {
 		Authorization: `Bearer ${import.meta.env.VITE_NOTEHUB_TOKEN}`,
 	},
