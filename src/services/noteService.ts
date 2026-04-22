@@ -8,13 +8,8 @@ interface NotesResponse {
 
 const api = axios.create({
 	baseURL: import.meta.env.VITE_BASE_URL.replace(/\/$/, ''),
-	params: {
-		page: 1,
-		perPage: 12,
-		search: '',
-	},
 	headers: {
-		Authorization: `Bearer ${import.meta.env.VITE_AUTH_TOKEN}`,
+		Authorization: `Bearer ${import.meta.env.VITE_NOTEHUB_TOKEN}`,
 	},
 })
 
@@ -39,12 +34,12 @@ export const createNote = async (noteData: {
 	content: string
 	tag: Note['tag']
 }): Promise<Note> => {
-	const { data } = await api.post('/notes', noteData)
+	const { data } = await api.post<Note>('/notes', noteData)
 
 	return data
 }
 export const deleteNote = async (id: string): Promise<Note> => {
-	const { data } = await api.delete(`/notes/${id}`)
+	const { data } = await api.delete<Note>(`/notes/${id}`)
 
 	return data
 }

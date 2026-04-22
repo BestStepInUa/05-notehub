@@ -9,11 +9,9 @@ import css from './NoteForm.module.css'
 const ValidationCreateNoteFormSchema = Yup.object().shape({
 	title: Yup.string()
 		.min(3, 'Title must be at least 3 characters')
-		.max(500, 'Title must be at most 500 characters')
+		.max(50, 'Title must be at most 50 characters')
 		.required('Title is required'),
-	content: Yup.string()
-		.max(500, 'Content must be at most 500 characters')
-		.required('Content is required'),
+	content: Yup.string().max(500, 'Content must be at most 500 characters'),
 	tag: Yup.string()
 		.oneOf(
 			['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'],
@@ -29,7 +27,7 @@ interface CreateNoteFormProps {
 export default function NoteForm({ onClose }: CreateNoteFormProps) {
 	interface FormData {
 		title: string
-		content: string
+		content?: string
 		tag: 'Todo' | 'Work' | 'Personal' | 'Meeting' | 'Shopping'
 	}
 	const initialValues: FormData = {
@@ -48,7 +46,10 @@ export default function NoteForm({ onClose }: CreateNoteFormProps) {
 	})
 
 	const handleSubmit = (values: FormData, actions: FormikHelpers<FormData>) => {
-		mutation.mutate(values)
+		mutation.mutate({
+			...values,
+			content: values.content || '',
+		})
 		actions.resetForm()
 	}
 
