@@ -29,23 +29,6 @@ export default function App() {
 	const notes = data?.notes || []
 	const totalPages = data?.totalPages ? data.totalPages : 0
 
-	useEffect(() => {
-		if (!data) return
-		if (currentPage < totalPages) {
-			queryClient.prefetchQuery({
-				queryKey: ['notes', searchQuery, currentPage + 1],
-				queryFn: () => fetchNotes(searchQuery, currentPage + 1),
-			})
-		}
-
-		if (currentPage > 1) {
-			queryClient.prefetchQuery({
-				queryKey: ['notes', searchQuery, currentPage - 1],
-				queryFn: () => fetchNotes(searchQuery, currentPage - 1),
-			})
-		}
-	}, [currentPage, data, queryClient, searchQuery, totalPages])
-
 	const handleSearch = useDebouncedCallback((searchQuery: string) => {
 		setSearchQuery(searchQuery)
 		setCurrentPage(1)
