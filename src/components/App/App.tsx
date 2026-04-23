@@ -31,7 +31,6 @@ export default function App() {
 
 	useEffect(() => {
 		if (!data) return
-
 		if (currentPage < totalPages) {
 			queryClient.prefetchQuery({
 				queryKey: ['notes', searchQuery, currentPage + 1],
@@ -81,4 +80,3 @@ export default function App() {
 		</div>
 	)
 }
-
