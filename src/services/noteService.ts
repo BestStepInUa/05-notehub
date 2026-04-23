@@ -24,6 +24,7 @@ export const fetchNotes = async (
 		params: {
 			search: searchText,
 			page: page,
+			perPage: 12,
 		},
 	})
 
@@ -44,4 +45,3 @@ export const deleteNote = async (id: string): Promise<Note> => {
 
 	return data
 }
-
