@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import { useDebouncedCallback } from 'use-debounce'
 
 import SearchBox from '../SearchBox'
@@ -19,7 +19,6 @@ export default function App() {
 	const [searchQuery, setSearchQuery] = useState('')
 	const [isModalOpen, setIsModalOpen] = useState(false)
 
-	const queryClient = useQueryClient()
 	const { data } = useQuery<{ notes: Note[]; totalPages: number }, Error>({
 		queryKey: ['notes', searchQuery, currentPage],
 		queryFn: () => fetchNotes(searchQuery, currentPage),
